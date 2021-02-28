@@ -1,8 +1,7 @@
 <<<<<<< HEAD
 <?php
-$query = "SELECT id FROM usuarios WHERE login=$_GET['login'] LIMIT 1";
 $con = pg_connect(getenv("DATABASE_URL"));
-$result = pg_query($con, $query);
+$result = pg_query($con, "SELECT id FROM usuarios WHERE login=$_GET['login'] LIMIT 1");
 $usuid = NULL;
 if ($result && pg_num_rows($result) > 0) {
     $usuid = pg_fetch_array($result, NULL, MYSQLI_ASSOC)['id'];

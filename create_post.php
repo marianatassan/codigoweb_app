@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php
 /*$usuid = $_GET['login'];
 $con = pg_connect(getenv("DATABASE_URL"));

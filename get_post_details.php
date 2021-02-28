@@ -2,25 +2,24 @@
 
 $response = array();
 
-if (isset($_GET["id_postagem"])) {
-    $id_postagem = $_GET['id_postagem'];
+if (isset($_GET["id_publicacao"])) {
+    $id_publicacao = $_GET['id_publicacao'];
 
     $con = pg_connect(getenv("DATABASE_URL"));
-    $result = pg_query($con, "SELECT * FROM postagens WHERE id_postagem = $id_postagem");
+    $result = pg_query($con, "SELECT * FROM publicacoes WHERE id_publicacao = $id_publicacao");
 
     if (!empty($result)) {
         if (pg_num_rows($result) > 0) {
             $result = pg_fetch_array($result);
 
-            $postagem = array();
-            $postagem["titulo"] = $result["titulo"];
-            $postagem["legenda"] = $result["legenda"];
-			$postagem["img"] = $result["img"];
-            $postagem["created_at"] = $result["created_at"];
+            $publicacao = array();
+            $publicacao["titulo"] = $result["titulo"];
+            $publicacao["legenda"] = $result["legenda"];
+			$publicacao["img"] = $result["img"];
 
             $response["success"] = 1;
-            $response["postagem"] = array();
-            array_push($response["postagem"], $postagem);
+            $response["publicacao"] = array();
+            array_push($response["publicacao"], $publicacao);
             pg_close($con);
 
             echo json_encode($response);

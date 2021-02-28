@@ -1,12 +1,12 @@
 <<<<<<< HEAD
 <?php
-$usuid = $_GET['login'];
+/*$usuid = $_GET['login'];
 $con = pg_connect(getenv("DATABASE_URL"));
 $result = pg_query($con, "SELECT id FROM usuarios WHERE login=$usuid LIMIT 1");
 $usuid = NULL;
 if ($result && pg_num_rows($result) > 0) {
     $usuid = pg_fetch_array($result, NULL, MYSQLI_ASSOC)['id'];
-}
+}*/
 
 $response = array();
 if (isset($_POST['titulo']) && isset($_POST['legenda'])  && isset($_FILES['img'])) {
@@ -18,7 +18,7 @@ if (isset($_POST['titulo']) && isset($_POST['legenda'])  && isset($_FILES['img']
     $img = 'data:image/'.$imageFileType.';base64,'.$image_base64;
 
     $con = pg_connect(getenv("DATABASE_URL"));
-    $result = pg_query($con, "INSERT INTO postagens(titulo, legenda, img, usuid) VALUES('$titulo', '$legenda', '$img', '$usuid')");
+    $result = pg_query($con, "INSERT INTO postagens(titulo, legenda, img) VALUES('$titulo', '$legenda', '$img')");
 
     if ($result) {
         $response["success"] = 1;

@@ -27,5 +27,6 @@ if (pg_num_rows($result) > 0) {
     pg_close($con);
 
     echo json_encode($response);
+}
 
 ?>

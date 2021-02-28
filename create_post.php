@@ -1,6 +1,6 @@
 <<<<<<< HEAD
 <?php
-$query = "SELECT id FROM usuarios WHERE login='$_GET['login']' LIMIT 1";
+$query = "SELECT id FROM usuarios WHERE login=$_GET['login'] LIMIT 1";
 $con = pg_connect(getenv("DATABASE_URL"));
 $result = pg_query($con, $query);
 $usuid = NULL;

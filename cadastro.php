@@ -7,7 +7,7 @@ if(isset($_POST['novoLogin']) && isset($_POST['novaSenha'])){
     $login_passado = trim($_POST['novoLogin']);
     $senha_passada = trim($_POST['novaSenha']);
 
-    $result1 = pg_query($con, "SELECT * FROM usuarios WHERE login = '$login_passado' ");
+    $result1 = pg_query($con, "SELECT login FROM usuarios WHERE login = '$login_passado' ");
 
     if (pg_num_rows($result1) > 0) {
         $response["success"] = 0;

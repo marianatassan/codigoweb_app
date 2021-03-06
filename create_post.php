@@ -14,7 +14,7 @@ if (isset($_POST['titulo']) && isset($_POST['legenda'])  && isset($_FILES['img']
     $image_base64 = base64_encode(file_get_contents($_FILES['img']['tmp_name']) );
     $img = 'data:image/'.$imageFileType.';base64,'.$image_base64;
 
-    $result = pg_query($con, "INSERT INTO postagens(id_usuario, legenda, titulo, img) VALUES('$id_usuario','$legenda', '$titulo', '$img')");
+    $result = pg_query($con, "INSERT INTO publicacoes(id_usuario, legenda, titulo, img) VALUES('$id_usuario','$legenda', '$titulo', '$img')");
 
     if ($result) {
         $response["success"] = 1;

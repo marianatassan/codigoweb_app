@@ -1,40 +1,33 @@
 <?php
-/*$usuid = $_GET['login'];
-$con = pg_connect(getenv("DATABASE_URL"));
-$result = pg_query($con, "SELECT id FROM usuarios WHERE login=$usuid LIMIT 1");
-$usuid = NULL;
-if ($result && pg_num_rows($result) > 0) {
-    $usuid = pg_fetch_array($result, NULL, MYSQLI_ASSOC)['id'];
-}*/
 
 $response = array();
-if (isset($_POST['titulo']) && isset($_POST['legenda'])  && isset($_FILES['img'])) {
-    $titulo = $_POST['titulo'];
-    $legenda = $_POST['legenda'];
+$con = pg_connect(getenv("DATABASE_URL"));
+
+if (isset($_POST['titulo']) && isset($_POST['legenda'])  && isset($_FILES['img']) && isset($_POST['login']) && isset($_POST['senha']) && isset($_POST['id_usuario'])) {
+    $login = trim($_POST['login']);
+    $senha = trim($_POST['senha']);
+    $id_usuario = trim($_POST['id_usuario']);
+    $titulo = trim($_POST['titulo']);
+    $legenda = trim($_POST['legenda']);
 
     $imageFileType = strtolower(pathinfo(basename($_FILES["img"]["name"]),PATHINFO_EXTENSION));
     $image_base64 = base64_encode(file_get_contents($_FILES['img']['tmp_name']) );
     $img = 'data:image/'.$imageFileType.';base64,'.$image_base64;
 
-    $con = pg_connect(getenv("DATABASE_URL"));
-    $result = pg_query($con, "INSERT INTO postagens(titulo, legenda, img) VALUES('$titulo', '$legenda', '$img')");
+    $result = pg_query($con, "INSERT INTO postagens(id_usuario, legenda, titulo, img) VALUES('$id_usuario','$legenda', '$titulo', '$img')");
 
     if ($result) {
         $response["success"] = 1;
         $response["message"] = "Postagem realizada com sucesso";
-
-        pg_close($con);
-        echo json_encode($response);
     } else {
         $response["success"] = 0;
         $response["message"] = "Erro ao criar produto no BD";
-        pg_close($con);
-        echo json_encode($response);
     }
 } else {
     $response["success"] = 0;
     $response["message"] = "Campo requerido nao preenchido";
-
-    echo json_encode($response);
 }
+pg_close($con);
+echo json_encode($response);
+
 ?>

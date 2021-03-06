@@ -6,7 +6,7 @@ $con = pg_connect(getenv("DATABASE_URL"));
 if (isset($_POST['titulo']) && isset($_POST['legenda'])  && isset($_FILES['img']) && isset($_POST['login']) && isset($_POST['senha']) && isset($_POST['id_usuario'])) {
     $login = trim($_POST['login']);
     $senha = trim($_POST['senha']);
-    $id_usuario = trim($_POST['id_usuario']);
+    $id_usuario = intval($_POST['id_usuario']);
     $titulo = trim($_POST['titulo']);
     $legenda = trim($_POST['legenda']);
 

@@ -31,8 +31,6 @@ if (isset($_POST['titulo']) && isset($_POST['legenda']) && isset($_FILES['img'])
 } else {
     $response["success"] = 0;
     $response["message"] = "Campo requerido nao preenchido";
-	
-	pg_close($con);
 }
 echo json_encode($response);
 

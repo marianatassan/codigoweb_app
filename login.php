@@ -14,7 +14,7 @@ if(isset($_POST['login']) && isset($_POST['senha'])){
 		if($senha_passada == $row['senha']){
 			$result3 = pg_query($con, "SELECT id FROM usuarios WHERE login = '$login_passado' ");
 			$response["success"] = 1;
-            $response["id"] = strval($result3['id']);
+            $response["id"] = strval($result3);
         } else {
             $response["success"] = 0;
             $response["message"] = "Senha inserida incorreta";

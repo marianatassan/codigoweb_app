@@ -16,7 +16,7 @@ if(isset($_POST['login']) && isset($_POST['senha'])){
 			if (pg_num_rows($result1) > 0) {
 				$row2 = pg_fetch_array(result3);
 				$response["success"] = 1;
-				$response["id"] = $row2['id'];
+				$response["id"] = $row2["id"];
 			} else {
 				$response["success"] = 0;
 			}

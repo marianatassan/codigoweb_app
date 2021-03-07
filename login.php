@@ -15,7 +15,7 @@ if(isset($_POST['login']) && isset($_POST['senha'])){
 			$result3 = pg_query($con, "SELECT id FROM usuarios WHERE login = '$login_passado' ");
 			if (pg_num_rows($result3) 0) {
 				$row2 = pg_fetch_array($result3);
-				$response["id"] = $row2['id'];
+				//$response["id"] = $row2['id'];
 				$response["success"] = 1;
 			}
         } else {

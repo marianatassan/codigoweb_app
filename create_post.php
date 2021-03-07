@@ -6,7 +6,7 @@ if (isset($_POST['titulo']) && isset($_POST['legenda']) && isset($_FILES['img'])
     $login = trim($_POST['login']);
     $senha = trim($_POST['senha']);
     $id_usuario_str = trim($_POST['id_usuario']);
-	$id_usuario = intval(id_usuario_str);
+	$id_usuario = intval($id_usuario_str);
     $titulo = trim($_POST['titulo']);
     $legenda = trim($_POST['legenda']);
 
@@ -22,17 +22,15 @@ if (isset($_POST['titulo']) && isset($_POST['legenda']) && isset($_FILES['img'])
         $response["success"] = 1;
         $response["message"] = "Postagem realizada com sucesso";
 		
-		pg_close($con);
     } else {
         $response["success"] = 0;
         $response["message"] = "Erro ao criar produto no BD";
-		
-		pg_close($con);
     }
 } else {
     $response["success"] = 0;
     $response["message"] = "Campo requerido nao preenchido";
 }
+pg_close($con);
 echo json_encode($response);
 
 ?>

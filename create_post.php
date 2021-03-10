@@ -5,8 +5,8 @@ $response = array();
 if (isset($_POST['titulo']) && isset($_POST['legenda']) && isset($_FILES['img']) && isset($_POST['login']) && isset($_POST['senha']) && isset($_POST['id_usuario'])) {
     $login = trim($_POST['login']);
     $senha = trim($_POST['senha']);
-    $id_usuario_str = trim($_POST['id_usuario']);
-	$id_usuario = intval($id_usuario_str);
+    //$id_usuario_str = trim($_POST['id_usuario']);
+	$id_usuario = 1;
     $titulo = trim($_POST['titulo']);
     $legenda = trim($_POST['legenda']);
 

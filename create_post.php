@@ -2,6 +2,9 @@
 
 $response = array();
 
+//abre a conexão com o banco
+$con = pg_connect(getenv("DATABASE_URL"));
+
 // verifica se todos os parâmetros foram enviados pela aplicação;
 if (isset($_POST['titulo']) && isset($_POST['legenda']) && isset($_FILES['img']) && isset($_POST['login']) && isset($_POST['senha']) && isset($_POST['id_usuario'])) {
 	//atribui os valore à variáveis;
@@ -16,9 +19,6 @@ if (isset($_POST['titulo']) && isset($_POST['legenda']) && isset($_FILES['img'])
     $imageFileType = strtolower(pathinfo(basename($_FILES["img"]["name"]),PATHINFO_EXTENSION));
     $image_base64 = base64_encode(file_get_contents($_FILES['img']['tmp_name']) );
     $img = 'data:image/'.$imageFileType.';base64,'.$image_base64;
-	
-	//abre a conexão com o banco
-	$con = pg_connect(getenv("DATABASE_URL"));
 
 	//realiza a inserção dos dados na tabela de publicações
     $result = pg_query($con, "INSERT INTO publicacoes(id_usuario, legenda, titulo, img) VALUES ('$id_usuario','$legenda','$titulo','$img')");
